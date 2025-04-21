@@ -5,33 +5,34 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.contactzapp.databinding.ItemContactBinding
 
+// Adapter class to manage how contact items are shown in RecyclerView
 class ContactAdapter(
     private val contacts: List<Contact>,
-    val onEdit: (Int) -> Unit,
-    val onDelete: (Int) -> Unit,
-    val onMessage: (Int) -> Unit
-) : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
+    private val onEdit: (position: Int) -> Unit,
+    private val onDelete: (position: Int) -> Unit,
+    private val onMessage: (position: Int) -> Unit
+    ) : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
 
-    inner class ContactViewHolder(val binding: ItemContactBinding)
-        : RecyclerView.ViewHolder(binding.root)
+    // ViewHolder holds references to views in each list item
+    inner class ContactViewHolder(val binding: ItemContactBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
+    // Create a ViewHolder by inflating the item_contact layout
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
         val binding = ItemContactBinding.inflate(
-            LayoutInflater.from(parent.context), parent, false)
+            LayoutInflater.from(parent.context), parent, false
+        )
         return ContactViewHolder(binding)
     }
 
+    // Bind data from the contact list to the views
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         val contact = contacts[position]
-        with(holder.binding) {
-            nameText.text = contact.name
-            phoneText.text = contact.phone
-
-            editBtn.setOnClickListener { onEdit(position) }
-            deleteBtn.setOnClickListener { onDelete(position) }
-            messageBtn.setOnClickListener { onMessage(position) }
-        }
+        holder.binding.tvName.text = contact.name
+        holder.binding.tvPhone.text = contact.phone
+        // more click listeners here for future edit/delete/message actions
     }
 
-    override fun getItemCount(): Int = contacts.size
+    // Tell RecyclerView how many items to show
+    override fun getItemCount() = contacts.size
 }

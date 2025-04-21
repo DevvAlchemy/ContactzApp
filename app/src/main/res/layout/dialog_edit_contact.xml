@@ -12,16 +12,18 @@
         android:layout_height="wrap_content"
         android:autofillHints=""
         android:hint="@string/name"
-        app:layout_constraintTop_toTopOf="parent"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editPhone"
         android:layout_width="90dp"
         android:layout_height="wrap_content"
         android:hint="@string/phone"
-        app:layout_constraintTop_toBottomOf="@id/editName"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/editName" />
 </androidx.constraintlayout.widget.ConstraintLayout>
